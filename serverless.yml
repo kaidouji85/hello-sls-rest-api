@@ -1,11 +1,18 @@
 service: aws-node-http-api-project
 frameworkVersion: '2'
+useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs14.x
   region: ap-northeast-1
   lambdaHashingVersion: '20201221'
+  httpApi:
+    authorizers:
+      auth0Authorizer:
+        identitySource: $request.header.Authorization
+        issuerUrl: ${env:AUTH0_DOMAIN, ''}
+        audience: ${env:AUTH0_AUDIENCE, ''}
 
 functions:
   hello:
@@ -14,3 +21,5 @@ functions:
       - httpApi:
           path: /
           method: get
+          authorizer:
+            name: auth0Authorizer
