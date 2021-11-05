@@ -51,5 +51,5 @@ sls deploy
 # 以下URLを参考にauth0のアクセストークンを取得する
 # https://auth0.com/docs/tokens/access-tokens/get-access-tokens
 ACCESS_TOKEN=<auth0 access token>
-$ curl -XGET "Authorization: Bearer ${ACCESS_TOKEN}" "https://<API GatewayのURL>/"
+$ curl -XGET -H "Authorization: Bearer ${ACCESS_TOKEN}" "https://<API GatewayのURL>/"
 ```
